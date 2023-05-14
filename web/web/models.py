@@ -12,5 +12,8 @@ class Variant(models.Model):
     machine = models.ForeignKey(Machine, on_delete = models.CASCADE)
     quantity = models.IntegerField()
     
+    class Meta:
+        unique_together = ('product', 'machine',)
+    
     
   
