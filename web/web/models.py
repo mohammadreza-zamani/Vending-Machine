@@ -9,7 +9,7 @@ class Product(models.Model):
     
 class Variant(models.Model):
     product = models.ForeignKey(Product, on_delete = models.CASCADE)
-    machine = models.ForeignKey(Product, on_delete = models.CASCADE)
+    machine = models.ForeignKey(Machine, on_delete = models.CASCADE)
     quantity = models.IntegerField()
     
     
