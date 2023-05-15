@@ -1,0 +1,14 @@
+CommandError: "http://91.107.209.76:5000/" is not a valid port number or address:port pair.
+Watching for file changes with StatReloader
+[15/May/2023 15:55:43] "GET / HTTP/1.1" 200 451
+Not Found: /favicon.ico
+[15/May/2023 15:55:44] "GET /favicon.ico HTTP/1.1" 404 2507
+[15/May/2023 15:55:47] "GET /select/2 HTTP/1.1" 302 0
+[15/May/2023 15:55:48] "GET / HTTP/1.1" 200 443
+[15/May/2023 15:55:49] "GET /reset HTTP/1.1" 302 0
+[15/May/2023 15:55:49] "GET / HTTP/1.1" 200 443
+[15/May/2023 15:56:07] "GET / HTTP/1.1" 200 443
+[15/May/2023 15:56:10] "GET / HTTP/1.1" 200 443
+[15/May/2023 17:20:21] "GET / HTTP/1.1" 200 443
+Not Found: /favicon.ico
+[15/May/2023 17:20:22] "GET /favicon.ico HTTP/1.1" 404 2507
