@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Vending Machine Sysytem</h1>
+
+<a href="{{data.reset_link}}">Reset</a>
+<br>
+
+<table>
+    {% for machine in data.machines.values %}
+	<tr>
+	    <td> {{machine.name}}&nbsp </td>
+	    <td> {{machine.status}}&nbsp </td>
+	    <td>
+	        {% for action in machine.actions.values %}
+		    <a href="{{action.link}}"> {{action.link_name}} </a>&nbsp
+	        {% endfor %}
+	    </td>
+	</tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

@@ -18,9 +18,9 @@ def machines(request):
     template = loader.get_template('main.html')
     context = {
         'data' : {
-	    'reset_link' : reset_link,
+            'reset_link' : reset_link,
             'machines' : machines_data,
-	}
+        }
     }
     return HttpResponse(template.render(context, request))
 
@@ -28,19 +28,19 @@ def get_machine_actions(machine):
     variants = Variant.objects.filter(machine = machine.id, quantity__gt = 0)
     data = {}
     if machine.status == Machine.STATUS_IDLE and len(variants) > 0:
-        data = {
+        data[machine.id] = {
             0 : {
                 'link_name' : 'buy',
                 'link' : reverse('buy', args = (machine.id,))
-            }
         }
     elif machine.status == Machine.STATUS_WAITING:
+        data[machine.id] = {}
         for i in range(len(variants)):
             variant = variants[i]
-            data[i] = {
-                'link_name' : str(variant.product.name),
-                'link' : reverse('select', args = (variant.id,))
-            }
+            data[machine.id][id] = {
+'link_name' : str(variant.product.name),
+		'link' : reverse('select', args = (variant.id))
+	    }
     return data
 
 def reset(request):
@@ -48,9 +48,9 @@ def reset(request):
     Product.objects.all().delete()
     Variant.objects.all().delete()
     
-    machine1 = Machine(id = 1, name = "machine1", status = Machine.STATUS_IDLE)
+    machine1 = Machine(id = 1, name = "machine1", status = "idle")
     machine1.save()
-    machine2 = Machine(id = 2, name = "machine2", status = Machine.STATUS_IDLE)
+    machine2 = Machine(id = 2, name = "machine2", status = "idle")
     machine2.save()
     
     product1 = Product(id = 1, name = "coffee")
@@ -70,7 +70,7 @@ def reset(request):
 
 @transaction.atomic
 def select(request, id):
-    variant = Variant.objects.get(id = id)
+    varinat = Variant.objects.get(id = id)
     variant.quantity -= 1
     variant.save()
 
@@ -83,7 +83,6 @@ def select(request, id):
 
 def buy(request, id):
     machine = Machine.objects.get(id = id)
-    assert machine.status == Machine.STATUS_IDLE
     machine.status = Machine.STATUS_WAITING
     machine.save()
 
